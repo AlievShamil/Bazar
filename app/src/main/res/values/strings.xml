@@ -1,5 +1,18 @@
 <resources>
-    <string name="app_name">Bazar</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">Bazar</string>
+    <!--Settings-->
+    <string name="settings_label_login">Имя пользователя</string>
+    <string name="settings_default_bio">О себе</string>
+    <string name="settings_label_bio">Напишите немного о себе</string>
+    <string name="settings_default_username">Shamil Aliev</string>
+    <string name="settings_default_status">online</string>
+    <string name="settings_text_account">Аккаунт</string>
+    <string name="settings_default_number">+79387776749</string>
+    <string name="settings_phone_number_label">Нажмите чтобы изменить номер телефона</string>
+    <string name="settings_default_login">ShamilAliev</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="settings_menu_change_name">Изменить имя</string>
+    <string name="settings_menu_exit">Выход</string>
 </resources>
