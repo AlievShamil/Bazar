@@ -1,17 +1,24 @@
 package com.devcom.bazar
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
+import com.devcom.bazar.activities.RegisterActivity
 import com.devcom.bazar.databinding.ActivityMainBinding
 import com.devcom.bazar.ui.fragments.ChatFragment
 import com.devcom.bazar.ui.objects.AppDrawer
+import com.devcom.bazar.utilits.AUTH
+import com.devcom.bazar.utilits.initFirebase
+import com.devcom.bazar.utilits.replaceActivity
+import com.devcom.bazar.utilits.replaceFragment
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityMainBinding
-    private lateinit var mToolbar: Toolbar
-    private lateinit var mAppDrawer:AppDrawer
+    private lateinit var mMainToolbar: Toolbar
+    lateinit var mAppDrawer: AppDrawer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,17 +33,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunc() {
-        setSupportActionBar(mToolbar)
-        mAppDrawer.create()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.dataContainer,
-                ChatFragment()
-            ).commit()
+        if (AUTH.currentUser != null) {
+            setSupportActionBar(mMainToolbar)
+            mAppDrawer.create()
+            replaceFragment(ChatFragment(), false)
+        } else {
+            replaceActivity(RegisterActivity())
+        }
+
     }
 
 
     private fun initFields() {
-        mToolbar = mBinding.toolBar
-        mAppDrawer = AppDrawer(this,mToolbar)
+        mMainToolbar = mBinding.mainToolbar
+        mAppDrawer = AppDrawer(this, mMainToolbar)
+        initFirebase()
     }
 }

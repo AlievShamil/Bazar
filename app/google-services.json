@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "103275385098",
+    "firebase_url": "https://bazar-81867.firebaseio.com",
+    "project_id": "bazar-81867",
+    "storage_bucket": "bazar-81867.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103275385098:android:1b8890f133975e814c6af3",
+        "android_client_info": {
+          "package_name": "com.devcom.bazar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "103275385098-rj0jtkja871grqo4cmjdmdiacace9b0o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDss8hfCM4ZWSLDfJ5GBSWIyg3ZN1zvj1g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "103275385098-rj0jtkja871grqo4cmjdmdiacace9b0o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
