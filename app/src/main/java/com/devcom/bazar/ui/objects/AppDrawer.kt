@@ -16,12 +16,12 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem
 
-class AppDrawer(val mainActivity:AppCompatActivity, val toolbar: Toolbar) {
+class AppDrawer(val mainActivity: AppCompatActivity, val toolbar: Toolbar) {
     lateinit var mDrawer: Drawer
     private lateinit var mHeader: AccountHeader
-    private lateinit var mDrawerLayout:DrawerLayout
+    private lateinit var mDrawerLayout: DrawerLayout
 
-    fun create(){
+    fun create() {
         createHeader()
         creteDrawer()
         mDrawerLayout = mDrawer.drawerLayout
@@ -31,7 +31,7 @@ class AppDrawer(val mainActivity:AppCompatActivity, val toolbar: Toolbar) {
         mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = false
         mainActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-        toolbar.setNavigationOnClickListener{
+        toolbar.setNavigationOnClickListener {
             mainActivity.supportFragmentManager.popBackStack()
         }
     }
@@ -40,7 +40,7 @@ class AppDrawer(val mainActivity:AppCompatActivity, val toolbar: Toolbar) {
         mainActivity.supportActionBar?.setDisplayHomeAsUpEnabled(false)
         mDrawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = true
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-        toolbar.setNavigationOnClickListener{
+        toolbar.setNavigationOnClickListener {
             mDrawer.openDrawer()
         }
     }

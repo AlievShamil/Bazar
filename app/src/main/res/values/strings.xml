@@ -20,4 +20,9 @@
     <string name="register_hint_default_code">- - - - - -</string>
     <string name="register_title_your_phone">Ваш телефон</string>
     <string name="register_phone_hint">- --- --- ----</string>
+    <string name="settings_hint_input_name">Имя</string>
+    <string name="settings_hint_input_surname">Фамилия</string>
+    <string name="settings_hint_input_username">username</string>
+    <string name="toast_data_update">Данные обновлены</string>
+    <string name="settings_input_bio">bio</string>
 </resources>

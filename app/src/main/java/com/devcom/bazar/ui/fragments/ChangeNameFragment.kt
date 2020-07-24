@@ -1,60 +1,45 @@
 package com.devcom.bazar.ui.fragments
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import com.devcom.bazar.MainActivity
 import com.devcom.bazar.R
+import com.devcom.bazar.models.User
+import com.devcom.bazar.utilits.*
+import kotlinx.android.synthetic.main.fragment_change_name.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class ChangeNameFragment : BaseChangeFragment(R.layout.fragment_change_name) {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ChangeNameFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ChangeNameFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    override fun onResume() {
+        super.onResume()
+        initFullnameList()
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private fun initFullnameList() {
+        val fullnameList = USER.fullname.split(" ")
+        if (fullnameList.size == 2) {
+            settings_input_name.setText(fullnameList[0])
+            settings_input_surname.setText(fullnameList[1])
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_change_name, container, false)
-    }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ChangeNameFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ChangeNameFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun change() {
+        val name = settings_input_name.text.toString()
+        val surname = settings_input_surname.text.toString()
+        if (name.isEmpty()) {
+            showToast("Имя - обязательное поле")
+        } else {
+            val fullname = "$name $surname"
+            REF_DATABASE_ROOT.child(NODE_USERS).child(UID).child(CHILD_FULL_NAME)
+                .setValue(fullname).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        showToast(getString(R.string.toast_data_update))
+                        USER.fullname = fullname
+                        fragmentManager?.popBackStack()
+                    }
                 }
-            }
+        }
     }
 }

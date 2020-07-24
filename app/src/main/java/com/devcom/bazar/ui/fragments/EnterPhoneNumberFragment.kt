@@ -1,5 +1,6 @@
 package com.devcom.bazar.ui.fragments
 
+import androidx.fragment.app.Fragment
 import com.devcom.bazar.MainActivity
 import com.devcom.bazar.R
 import com.devcom.bazar.activities.RegisterActivity
@@ -14,14 +15,13 @@ import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.android.synthetic.main.fragment_enter_phone_number.*
 import java.util.concurrent.TimeUnit
 
-class EnterPhoneNumberFragment : BaseFragment(R.layout.fragment_enter_phone_number) {
+class EnterPhoneNumberFragment : Fragment(R.layout.fragment_enter_phone_number) {
 
     private lateinit var mPhoneNumber: String
     private lateinit var mCallback: PhoneAuthProvider.OnVerificationStateChangedCallbacks
 
     override fun onStart() {
         super.onStart()
-        AUTH = FirebaseAuth.getInstance()
         mCallback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
                 signInWithPhoneAuthCredential(credential)
