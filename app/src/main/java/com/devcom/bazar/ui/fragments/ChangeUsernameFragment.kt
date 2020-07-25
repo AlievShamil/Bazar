@@ -1,12 +1,7 @@
 package com.devcom.bazar.ui.fragments
 
-import android.os.Bundle
-import android.view.*
-import androidx.fragment.app.Fragment
 import com.devcom.bazar.R
-import com.devcom.bazar.models.User
 import com.devcom.bazar.utilits.*
-import kotlinx.android.synthetic.main.fragment_change_name.*
 import kotlinx.android.synthetic.main.fragment_change_username.*
 import java.util.*
 
@@ -36,7 +31,7 @@ class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_usern
     }
 
     private fun changeUsername() {
-        REF_DATABASE_ROOT.child(NODE_USER_NAMES).child(mNewUsername).setValue(UID)
+        REF_DATABASE_ROOT.child(NODE_USER_NAMES).child(mNewUsername).setValue(CURRENT_UID)
             .addOnCompleteListener{
                 if(it.isSuccessful) {
                     updateCurrentUsername()
@@ -45,7 +40,7 @@ class ChangeUsernameFragment : BaseChangeFragment(R.layout.fragment_change_usern
     }
 
     private fun updateCurrentUsername() {
-        REF_DATABASE_ROOT.child(NODE_USERS).child(UID).child(CHILD_USER_NAME)
+        REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_USER_NAME)
             .setValue(mNewUsername)
             .addOnCompleteListener{
                 if(it.isSuccessful) {

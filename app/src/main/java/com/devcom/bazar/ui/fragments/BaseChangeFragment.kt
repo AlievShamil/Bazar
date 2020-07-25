@@ -5,12 +5,15 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import com.devcom.bazar.MainActivity
 import com.devcom.bazar.R
+import com.devcom.bazar.utilits.APP_ACTIVITY
+import com.devcom.bazar.utilits.hideKeyboard
 
-open class BaseChangeFragment(layout:Int) : Fragment(layout) {
+open class BaseChangeFragment(layout: Int) : Fragment(layout) {
     override fun onStart() {
         super.onStart()
         setHasOptionsMenu(true)
-        (activity as MainActivity).mAppDrawer.disableDrawer()
+        APP_ACTIVITY.mAppDrawer.disableDrawer()
+        hideKeyboard()
     }
 
     override fun onStop() {

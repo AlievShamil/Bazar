@@ -1,11 +1,6 @@
 package com.devcom.bazar.ui.fragments
 
-import android.os.Bundle
-import android.view.*
-import androidx.fragment.app.Fragment
-import com.devcom.bazar.MainActivity
 import com.devcom.bazar.R
-import com.devcom.bazar.models.User
 import com.devcom.bazar.utilits.*
 import kotlinx.android.synthetic.main.fragment_change_name.*
 
@@ -32,11 +27,12 @@ class ChangeNameFragment : BaseChangeFragment(R.layout.fragment_change_name) {
             showToast("Имя - обязательное поле")
         } else {
             val fullname = "$name $surname"
-            REF_DATABASE_ROOT.child(NODE_USERS).child(UID).child(CHILD_FULL_NAME)
+            REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_FULL_NAME)
                 .setValue(fullname).addOnCompleteListener {
                     if (it.isSuccessful) {
                         showToast(getString(R.string.toast_data_update))
                         USER.fullname = fullname
+                        APP_ACTIVITY.mAppDrawer.updateHeader()
                         fragmentManager?.popBackStack()
                     }
                 }
